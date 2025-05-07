@@ -1,3 +1,5 @@
+// src/pages/Contact.jsx
+
 import React, { useState } from 'react';
 import {
   Box,
@@ -22,8 +24,8 @@ const ContactCard = styled(Paper)(({ theme }) => ({
   maxWidth: 500,
   margin: '0 auto',
   marginBottom: theme.spacing(6),
-  position: 'relative',
-  zIndex: 1,
+  backgroundColor: '#fdfdfd',
+  border: '1px solid #ddd',
 }));
 
 export default function Contact() {
@@ -46,7 +48,7 @@ export default function Contact() {
       sx={{
         position: 'relative',
         background: 'linear-gradient(135deg, #fffff3 0%, #fffde7 60%, #fff9c4 100%)',
-        boxShadow: ['inset 0 0 120px rgba(0,0,0,0.15)', '0 4px 30px rgba(0,0,0,0.1)'].join(', '),
+        boxShadow: ['inset 0 0 120px rgba(0,0,0,0.1)', '0 4px 30px rgba(0,0,0,0.05)'].join(', '),
         pt: { xs: 6, md: 10 },
         pb: { xs: 6, md: 10 },
         minHeight: '100vh',
@@ -64,21 +66,21 @@ export default function Contact() {
         <ContactCard>
           <Grid container spacing={3}>
             <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <LocationOnIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <LocationOnIcon sx={{ mr: 1, color: '#333' }} />
               <Typography>1234 Arch Ave, Suite 100</Typography>
             </Grid>
             <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Typography>Denver, CO 80202</Typography>
             </Grid>
             <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <EmailIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <MuiLink href="mailto:contact@archivision.com" underline="hover">
+              <EmailIcon sx={{ mr: 1, color: '#333' }} />
+              <MuiLink href="mailto:contact@archivision.com" underline="hover" color="inherit">
                 contact@archivision.com
               </MuiLink>
             </Grid>
             <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <PhoneIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <MuiLink href="tel:+15551234567" underline="hover">
+              <PhoneIcon sx={{ mr: 1, color: '#333' }} />
+              <MuiLink href="tel:+15551234567" underline="hover" color="inherit">
                 (555) 123-4567
               </MuiLink>
             </Grid>
@@ -105,7 +107,15 @@ export default function Contact() {
             required
             fullWidth
             variant="outlined"
-            sx={{ backgroundColor: '#fff', borderRadius: 1 }}
+            sx={{
+              backgroundColor: '#fff',
+              borderRadius: 1,
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: '#ccc' },
+                '&:hover fieldset': { borderColor: '#999' },
+                '&.Mui-focused fieldset': { borderColor: '#333' },
+              },
+            }}
           />
           <TextField
             label="Email"
@@ -116,7 +126,15 @@ export default function Contact() {
             required
             fullWidth
             variant="outlined"
-            sx={{ backgroundColor: '#fff', borderRadius: 1 }}
+            sx={{
+              backgroundColor: '#fff',
+              borderRadius: 1,
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: '#ccc' },
+                '&:hover fieldset': { borderColor: '#999' },
+                '&.Mui-focused fieldset': { borderColor: '#333' },
+              },
+            }}
           />
           <TextField
             label="Message"
@@ -128,9 +146,32 @@ export default function Contact() {
             rows={4}
             fullWidth
             variant="outlined"
-            sx={{ backgroundColor: '#fff', borderRadius: 1 }}
+            sx={{
+              backgroundColor: '#fff',
+              borderRadius: 1,
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: '#ccc' },
+                '&:hover fieldset': { borderColor: '#999' },
+                '&.Mui-focused fieldset': { borderColor: '#333' },
+              },
+            }}
           />
-          <Button type="submit" variant="contained" size="large" fullWidth sx={{ py: 1.5 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            fullWidth
+            sx={{
+              py: 1.5,
+              backgroundColor: '#333',
+              color: '#fff',
+              fontWeight: 'bold',
+              borderRadius: 0,
+              '&:hover': {
+                backgroundColor: '#555',
+              },
+            }}
+          >
             Submit
           </Button>
         </Box>

@@ -1,13 +1,15 @@
+// src/pages/Portfolio.jsx
+
 import React from 'react';
-import { Typography, Box, Grid, Card } from '@mui/material';
+import { Typography, Box, Grid, Card, CardMedia } from '@mui/material';
 
 const projects = [
-  'Skyline Tower',
-  'Green Pavilion',
-  'Urban Loft',
-  'Coastal Retreat',
-  'Mountain Cabin',
-  'Eco Campus',
+  { title: 'Skyline Tower', image: 'skyline.jpg' },
+  { title: 'Green Pavilion', image: 'green.jpg' },
+  { title: 'Urban Loft', image: 'urban.jpg' },
+  { title: 'Coastal Retreat', image: 'coastal.jpg' },
+  { title: 'Mountain Cabin', image: 'cabin.jpg' },
+  { title: 'Eco Campus', image: 'eco.jpg' },
 ];
 
 export default function Portfolio() {
@@ -21,7 +23,6 @@ export default function Portfolio() {
         background: 'linear-gradient(to bottom, #fffde7, #ffffff)',
       }}
     >
-      {/* Main content */}
       <Box sx={{ flex: '1 0 auto', py: 8, px: 2, textAlign: 'center' }}>
         <Typography variant="h3" fontWeight="bold" gutterBottom>
           Our Portfolio
@@ -37,16 +38,15 @@ export default function Portfolio() {
           alignItems="center"
           sx={{ mt: 4 }}
         >
-          {projects.map((title, index) => (
+          {projects.map((project, index) => (
             <Grid item key={index}>
               <Card
                 sx={{
                   width: 220,
-                  height: 220,
+                  height: 280,
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
                   boxShadow: 3,
                   transition: 'transform 0.3s',
                   '&:hover': {
@@ -54,8 +54,24 @@ export default function Portfolio() {
                   },
                 }}
               >
+                <CardMedia
+                  component="img"
+                  height="160"
+                  image={`/images/portfolio/${project.image}`}
+                  loading="lazy"
+                  alt={project.title}
+                  sx={{
+                    objectFit: 'cover',
+                    borderBottom: '1px solid #ddd',
+                  }}
+                />
+
                 <Box
                   sx={{
+                    flexGrow: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     px: 2,
                     textAlign: 'center',
                   }}
@@ -66,7 +82,7 @@ export default function Portfolio() {
                     noWrap
                     sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
                   >
-                    {title}
+                    {project.title}
                   </Typography>
                 </Box>
               </Card>
@@ -75,9 +91,8 @@ export default function Portfolio() {
         </Grid>
       </Box>
 
-      {/* Footer placeholder */}
       <Box sx={{ flexShrink: 0 }}>
-        {/* Add <Footer /> here if needed */}
+        {/* <Footer /> */}
       </Box>
     </Box>
   );

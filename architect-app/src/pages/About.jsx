@@ -1,115 +1,136 @@
-import React from 'react';
-import { Box, Container, Typography, Grid, Card, CardContent, Avatar, Button } from '@mui/material';
-import PublicIcon from '@mui/icons-material/Public';
-import NatureIcon from '@mui/icons-material/Nature';
-import PaletteIcon from '@mui/icons-material/Palette';
-import { Link } from 'react-router-dom';
-import { styled } from '@mui/system';
+// src/pages/About.jsx
 
-// Pencil-sketch circles with darker, richer shading
-const DecorativeCircle = styled('div')(({ ownerState }) => ({
-  position: 'absolute',
-  borderRadius: '50%',
-  background: 'radial-gradient(circle at center, rgba(0,0,0,0.1) 50%, transparent 100%)',
-  opacity: 0.5,
-  width: ownerState.size,
-  height: ownerState.size,
-  top: ownerState.top,
-  left: ownerState.left,
-  transform: ownerState.rotation,
-  boxShadow: [
-    `inset -6px -6px 12px rgba(0,0,0,0.3)`,  // stronger inner shadow
-    `inset 6px 6px 14px rgba(0,0,0,0.2)`,    // softer inner highlight
-    `4px 4px 8px rgba(0,0,0,0.15)`,          // pronounced outer shadow
-    `-4px -4px 8px rgba(0,0,0,0.1)`          // subtle counter highlight
-  ].join(', '),
-  zIndex: 0,
-}));
+import React from 'react';
+import {
+  CssBaseline,
+  Box,
+  Typography,
+  Container,
+  Button,
+  Card,
+  CardContent
+} from '@mui/material';
+import { Link } from 'react-router-dom'; // ✅ Enable routing
+
+const cardData = [
+  {
+    title: 'Our Philosophy',
+    description:
+      'We believe architecture should harmonize with its environment, enrich communities, and inspire those who experience it.',
+  },
+  {
+    title: 'Our Team',
+    description:
+      'Led by a diverse team of visionary architects and designers, we collaborate across disciplines to deliver meaningful and timeless spaces.',
+  },
+  {
+    title: 'Our Vision',
+    description:
+      'We aim to redefine modern architecture by embracing technology, culture, and sustainability to design the future responsibly.',
+  },
+];
 
 export default function About() {
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        background: 'linear-gradient(135deg, #fffff3 0%, #fffde7 60%, #fff9c4 100%)',
-        boxShadow: [
-          'inset 0 0 120px rgba(0,0,0,0.15)',
-          '0 4px 30px rgba(0,0,0,0.1)'
-        ].join(', '),
-        pt: { xs: 6, md: 10 },
-        pb: { xs: 8, md: 12 },
-      }}
-    >
-      {/* Pencil-sketch circles */}
-      <DecorativeCircle
-        ownerState={{
-          size: '220px',
-          top: '-40px',
-          left: '-40px',
-          rotation: 'rotate(-12deg)',
+    <>
+      <CssBaseline />
+
+      <Box
+        sx={{
+          width: '100%',
+          background: 'linear-gradient(to bottom, #fffde7, #ffffff)',
+          py: 8,
         }}
-      />
-      <DecorativeCircle
-        ownerState={{
-          size: '320px',
-          top: '65%',
-          left: '75%',
-          rotation: 'rotate(8deg)',
-        }}
-      />
+      >
+        <Container maxWidth="lg">
+          <Typography variant="h3" fontWeight="bold" textAlign="center" gutterBottom>
+            About ArchiVision
+          </Typography>
 
-      {/* Hero Section */}
-      <Container maxWidth="md" sx={{ textAlign: 'center', mb: { xs: 4, md: 8 }, position: 'relative', zIndex: 1 }}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', letterSpacing: 1 }}>
-          About ArchiVision
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary">
-          Transforming ideas into iconic architectural spaces that inspire and endure.
-        </Typography>
-      </Container>
+          <Typography
+            variant="subtitle1"
+            textAlign="center"
+            sx={{ maxWidth: 800, mx: 'auto', mb: 6 }}
+          >
+            We are a design-driven architecture firm dedicated to transforming visionary concepts
+            into spatial experiences that endure. Every structure we create reflects a commitment
+            to beauty, sustainability, and functionality.
+          </Typography>
 
-      {/* Core Values */}
-      <Container maxWidth="lg" sx={{ mb: { xs: 6, md: 10 }, position: 'relative', zIndex: 1 }}>
-        <Grid container spacing={4}>
-          {[
-            {
-              icon: <PublicIcon fontSize="large" />, 
-              title: 'Global Reach',
-              description: 'Projects spanning continents, adapting to diverse cultures and environments.',
-            },
-            {
-              icon: <NatureIcon fontSize="large" />, 
-              title: 'Eco-Friendly',
-              description: 'Sustainable practices and materials for a greener future.',
-            },
-            {
-              icon: <PaletteIcon fontSize="large" />, 
-              title: 'Innovative Design',
-              description: 'Blending creativity and technology to push architectural boundaries.',
-            },
-          ].map((item, idx) => (
-            <Grid key={idx} item xs={12} md={4}>
-              <Card elevation={4} sx={{ p: 4, textAlign: 'center', height: '100%', transition: 'transform 0.3s', '&:hover': { transform: 'translateY(-8px)' } }}>
-                <Avatar sx={{ bgcolor: 'primary.main', width: 56, height: 56, mx: 'auto', mb: 2 }}>{item.icon}</Avatar>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>{item.title}</Typography>
-                  <Typography variant="body2" color="text.secondary">{item.description}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              gap: 4,
+              px: 2,
+            }}
+          >
+            {cardData.map((card, index) => (
+              <Box
+                key={index}
+                sx={{
+                  width: {
+                    xs: '100%',
+                    sm: '45%',
+                    md: '30%',
+                  },
+                  minWidth: 280,
+                  maxWidth: 360,
+                  flexGrow: 1,
+                }}
+              >
+                <Card
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    backgroundColor: '#fdfdfd',
+                    border: '1px solid #ddd',
+                    boxShadow: 2,
+                    transition: 'transform 0.3s',
+                    '&:hover': {
+                      transform: 'scale(1.04)',
+                      boxShadow: 4,
+                    },
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                      {card.title}
+                    </Typography>
+                    <Typography variant="body2">{card.description}</Typography>
+                  </CardContent>
+                </Card>
+              </Box>
+            ))}
+          </Box>
 
-      {/* Call to Action */}
-      <Container maxWidth="sm" sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-        <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
-          Ready to bring your vision to life?
-        </Typography>
-        <Button component={Link} to="/contact" variant="contained" size="large" sx={{ px: 4, py: 1.5 }}>
-          Contact Us
-        </Button>
-      </Container>
-    </Box>
+          {/* ✅ Learn More button links to /contact */}
+          <Box textAlign="center" mt={6}>
+            <Button
+              component={Link}
+              to="/contact"
+              variant="contained"
+              sx={{
+                backgroundColor: '#333333',
+                color: '#fff',
+                fontWeight: 'bold',
+                px: 5,
+                py: 1.5,
+                fontSize: '1.1rem',
+                borderRadius: 0,
+                '&:hover': {
+                  backgroundColor: '#555555',
+                },
+              }}
+            >
+              Learn More
+            </Button>
+          </Box>
+        </Container>
+      </Box>
+    </>
   );
 }
